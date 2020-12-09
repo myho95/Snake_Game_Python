@@ -27,7 +27,7 @@ while key != KEY_EXIT:
     event = window.getch()
 
     # Update window after 15 milliseconds
-    window.timeout(200)
+    window.timeout(150)
 
     prevKey = key
 
