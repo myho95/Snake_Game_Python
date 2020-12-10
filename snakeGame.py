@@ -18,11 +18,20 @@ window.nodelay(1)
 # Make a starter snake:
 snake = [(1, 3), (1, 2), (1, 1)]
 
-
 # Make food
-foodY = random.randint(1, 13)
-foodX = random.randint(1, 28)
-window.addch(foodY, foodX, "o")
+food_error = 0
+while True:
+    foodY = random.randint(1, 13)
+    foodX = random.randint(1, 28)
+    window.addch(foodY, foodX, "o")
+    for s in snake:
+        if (foodY, foodX) == s:
+            food_error = food_error + 1
+            break
+    if food_error != 0:
+        continue
+    else:
+        break
 
 
 key = KEY_RIGHT
@@ -61,9 +70,19 @@ while key != KEY_EXIT:
         snake_length = len(snake)
         if snake_length > 30:
             break
-        foodY = random.randint(1, 13)
-        foodX = random.randint(1, 28)
-        window.addch(foodY, foodX, "o")
+        food_error = False
+        while True:
+            foodY = random.randint(1, 13)
+            foodX = random.randint(1, 28)
+            window.addch(foodY, foodX, "o")
+            for s in snake:
+                if (foodY, foodX) == s:
+                    food_error = True
+                    break
+            if food_error != False:
+                continue
+            else:
+                break
 
     else:
         tail = snake.pop()
